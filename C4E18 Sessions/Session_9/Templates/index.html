@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for p in posts %}
+    <h1>C4E 18 Blog</h1>
+    <!-- jinja2 2 dau -->
+    <h3>{{p.post_title}}</h3>
+    <p>
+        {{p.post_content}} 
+    </p>
+    <i>
+       
+      by:
+       {{"Mr" if p.gender == 1 else "Ms"}}
+        {{p.post_author}}
+    </i>
+    <hr>
+    <br> 
+    <h3></h3>
+    {% endfor %}
+</body>
+</html>

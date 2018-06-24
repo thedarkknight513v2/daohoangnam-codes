@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for p in posts %}
+    <h1>hello from the other side</h1>
+    <h3>
+        {{ p.title }}
+    </h3>
+    <p>
+        {{ p.content}} 
+    </p>
+    <i>
+        by: 
+        {% if p.gender == 1 %} 
+        Mr.
+        {% elif p.gender ==0 %} 
+        Ms.
+        {% endif %}
+        {{ p.author}} 
+    {% endfor %}
+</body>
+    </i>
+    <br>
+    <h3>Châm ngôn 1</h3>
+    <p>Anh đi nhiều nơi nhưng chưa thấy con đường nào nhiều đường cong như em</p>
+    <i>by: ĐHN</i>
+    <br>
+    <h3>Châm ngôn 2</h3>
+    <p>Con cá với em khác nhau ở đâu? Con cá sống dưới nước còn em sống trong trái tim anh</p>
+    <i>by: namdh</i>
+    <br>
+</body>
+</html>
+
+
+
+list_1 =[{dictionary 1}, {dictionary 2}, ...]
