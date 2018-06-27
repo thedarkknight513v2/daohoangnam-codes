@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 import mlab
 import mlab2hw
 from models.service import Service 
@@ -20,14 +20,15 @@ def index():
 @app.route("/search")
 def search1():
     # day thong tin service len day. lay thong tin tu database
-    all_service = Service.objects(gender = 1) #lay ra document trong Service thoa man tieu chi
+    all_service = Service.objects(gender = gender) #lay ra document trong Service thoa man tieu chi
     return render_template("search.html", all_service = all_service)
 
 
 @app.route("/search/<gender>")
 def search2(gender):
     # day thong tin service len day. lay thong tin tu database
-    all_service = Service.objects(gender = gender, yob__lte =1998,address__icontains="Hanoi") #lay ra document trong Service thoa man tieu chi
+    # all_service = Service.objects(gender = gender, yob__lte =1998,address__icontains="Hanoi") #lay ra document trong Service thoa man tieu chi
+    all_service = Service.objects(gender = gender) #lay ra document trong Service thoa man tieu chi
     return render_template("search.html", all_service = all_service)
 
 
@@ -43,7 +44,41 @@ def customer_2():
     ten_customer = all_customer[0:10]
     return render_template("customer.html",ten_customer = ten_customer)
 
+@app.route("/admin")
+def admin():
+    all_service = Service.objects()
+    return render_template("admin.html", all_service = all_service)
 
+
+@app.route("/admin/delete/<service_id>")
+def delete(service_id):
+    # return render_template("delete.html")
+    service_to_delete = Service.objects().with_id(service_id) 
+    if service_to_delete is None:
+        return "Service not found"
+    else:
+        service_to_delete.delete()
+        # return "deleted" + service_id
+        return redirect(url_for("admin"))
+
+@app.route("/admin/new_service", methods = ["GET", "POST"])
+def create():
+    if request.method == "GET":
+        return render_template("new_service.html")
+    elif request.method == "POST":
+        form = request.form
+        name = form["name"]
+        yob = form["yob"]
+        address = form["address"]
+
+        new_service = Service(
+            name = name,
+            yob = yob,
+            address = address
+        )
+        new_service.save()
+
+        return redirect(url_for("admin"))
 
 if __name__ == '__main__':
   app.run(debug=True)   
