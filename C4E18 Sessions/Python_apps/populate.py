@@ -13,6 +13,8 @@ fake = Faker()
 
 for i in range(50):
     print("Saving service", i + 1, "...")
+    description_list_1 = ["Ngoan", "Hien","Le phep"]
+    description_list_2 = ["Nau an ngon", "diu dang", "hung du"]
     new_service = Service(
         name = fake.name(),
         yob = randint(1990,2000),
@@ -20,7 +22,10 @@ for i in range(50):
         height = randint(155, 190),
         phone = fake.phone_number(),
         address = fake.address(),
-        status = choice([True, False])
+        status = choice([True, False]),
+        description = choice(description_list_1) + ", "+ choice(description_list_2),
+        # measurment = str(randint(70,100))+", "+ str(randint(70,100)) +", "+str(randint(70,100))
+        measurement = [randint(70,100), randint(70,100), randint(70,100)]
         )
     new_service.save()
 
