@@ -11,17 +11,21 @@
     {% for service in all_service %}
     <div>
         {% if service.gender == 0 %}
-        <img src = "../static/image/female-profile.jpg" alt ="">
+        <img src = "../static/image/chipu.jpg" alt ="">
         {% else %}
-        <img src = "../static/image/male-profile.jpg" alt ="">
+        <img src = "../static/image/phamnhatvuong.jpg" alt ="">
         {% endif %}
             <p>Tên: {{service.name}}</p>
             <p>Giới tính: {{service.gender}}</p>
             <p>Chiều cao: {{service.height}}</p>
             <p>Địa chỉ: {{service.address}}</p>
             <p>YoB: {{service.yob}}</p>
+            <p>Miêu tả: {{service.description}}</p>
+            <p>Số đo: {{ service.measurement}}</p>
+            <a = href = "{{ url_for("search_detail", service_id = service.id )}}">Chi tiết</a>
             <hr>
     </div>
     {% endfor %}
 </body>
 </html>
+

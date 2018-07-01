@@ -4,13 +4,15 @@ import mlab
 import mlab2hw
 from models.service import Service 
 from models.customer import Customer
+from models.service import User
+from models.service import Order
 from mongoengine import *
-app = Flask(__name__)
+from datetime import datetime
 
-#0. Create connection
+app = Flask(__name__)
+app.secret_key ="a super super secret key"
 mlab.connect()
 mlab2hw.connect()
-
 
 # Day object/document len database
 
@@ -20,17 +22,19 @@ def index():
 
 @app.route("/search")
 def search1():
+   
     # day thong tin service len day. lay thong tin tu database
     # all_service = Service.objects(gender = gender) #lay ra document trong Service thoa man tieu chi
-    all_service = Service.objects() #lay ra document trong Service thoa man tieu chi
-    return render_template("search.html", all_service = all_service)
-
+        all_service = Service.objects() #lay ra document trong Service thoa man tieu chi
+        return render_template("search.html", all_service = all_service)
+    
 @app.route("/search/detail/<service_id>", methods = ["GET", "POST"])
 def search_detail(service_id):
-    service_detail = Service.objects().with_id(service_id)
-    # return render_template("search_detail.html")
-    return render_template("search_detail.html", service_detail = service_detail)
-
+    if "loggedin" in session:
+        service_detail = Service.objects().with_id(service_id)
+        return render_template("search_detail.html", service_detail = service_detail)
+    else:
+        return redirect(url_for("log_in"))
 
 @app.route("/search/<gender>")
 def search2(gender):
@@ -38,7 +42,6 @@ def search2(gender):
     # all_service = Service.objects(gender = gender, yob__lte =1998,address__icontains="Hanoi") #lay ra document trong Service thoa man tieu chi
     all_service = Service.objects(gender = gender) #lay ra document trong Service thoa man tieu chi
     return render_template("search.html", all_service = all_service)
-
 
 @app.route("/customer")
 def customer():
@@ -113,22 +116,68 @@ def update(service_id):
         service_update.reload()
         return redirect(url_for("admin"))
 
-# @app.route("/admin/update1/<service_id>",methods = ["GET", "POST"])
-# def update1(service_id):
-#     service
+@app.route("/sign-in", methods = ["GET", "POST"])
+def sign_in():
+    if request.method == "GET":
+        return render_template("sign_in.html")
+    elif request.method == "POST":
+        form = request.form 
+        user_name = form["user_name"]
+        pass_word = form["pass_word"]
+        email = form["email"]
+        full_name = form["full_name"]
 
-# #
-# @app.route("/search/detail/<service_id>", methods = ["GET", "POST"])
-# def search_detail(service_id):
-#     service_detail = Service.objects().with_id(service_id)
-#     # return render_template("search_detail.html")
-#     return render_template("search_detail.html", service_detail = service_detail)
+        new_user = User(
+            user_name = user_name,
+            pass_word = pass_word,
+            email = email,
+            full_name = full_name
+        )
+
+        new_user.save()
+        return redirect(url_for("sign_in"))
+
+@app.route("/log-in", methods = ["GET", "POST"])
+def log_in():
+    if request.method == "GET":
+        return render_template("log_in.html")
+    elif request.method == "POST":
+        form = request.form 
+        user_name = form["user_name"]
+        pass_word = form["pass_word"]
+        account_info = User.objects(user_name = user_name).get().to_mongo()
+        correct_pass_word = account_info["pass_word"]
+        if pass_word == correct_pass_word:
+            session["loggedin"] = True
+            session["user_name"] = user_name
+            return redirect(url_for("search1"))
+            # return "Welcome"
+        else:
+            return "Incorrect"
+
+@app.route("/logout")
+def log_out():
+    del session["loggedin"]
+    return redirect(url_for("index"))
+
+@app.route("/order/<service_id>", methods = ["POST", "GET"])
+def order(service_id):
+    # if "loggedin" in session:
+    service_id = service_id
+    order_time = str(datetime.now())
+    is_accepted = False
+    user_id = session.get("user_name")
+
+    new_order = Order(
+        service_id = service_id,
+        order_time = order_time,
+        is_accepted = is_accepted,
+        user_id= user_id
+    )
+    new_order.save()    
+    return "Request sent"
 
 if __name__ == '__main__':
-  app.run(debug=True)   
+    
+    app.run(debug=True)   
  
-
-        # <input type="radio" name="gender" id="Nam" value="Nam"> Nam </input>
-        # <input type="radio" name="gender" id="Nu" value="Nu"> Nu </input>
-        # <input type="radio" name="gender" id="Nam" value= "Nam"> Nam </input>
-        # <input type="radio" name="gender" id="Nu" value= "Nu"> Nu </input>

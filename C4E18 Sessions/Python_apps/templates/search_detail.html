@@ -29,6 +29,8 @@
     <p>Status: {{service_detail.status}}</p>
     <p>Description: {{service_detail.description}}</p>
     <p>Measurement: {{service_detail.measurement}}</p>
+    <br>
+    <a = href = "{{ url_for("order", service_id = service_detail.id)}}">Request service</a>
      
 
 

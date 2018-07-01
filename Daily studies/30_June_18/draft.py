@@ -1,8 +1,14 @@
-print(a)a
-                a = (int(123))
+print(a)
+# dfafdsfs""" fdsafasfl
+# 
+# 
+# 
+#  """
+  
+  """  """              a = (int(123))
 a = int(123)
 a = int(123)
-
+"""  """
 
 
 

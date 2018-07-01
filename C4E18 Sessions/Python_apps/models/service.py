@@ -12,7 +12,6 @@ class Service(Document):
     description = StringField()
     measurement = ListField()
   
-
 class Customer(Document):
     name = StringField()
     gender = IntField()
@@ -21,6 +20,19 @@ class Customer(Document):
     job = StringField()
     company = StringField()
     contracted = BooleanField()
+
+class User(Document):
+    user_name = StringField()
+    pass_word = StringField()
+    email = StringField()
+    full_name = StringField()
+
+class Order(Document):
+    service_id = StringField()
+    user_id = StringField()
+    order_time = StringField()
+    is_accepted = BooleanField()
+
 
 
 # Do thong tin sau khi design khuon

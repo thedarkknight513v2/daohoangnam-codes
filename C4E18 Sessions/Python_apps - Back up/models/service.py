@@ -9,15 +9,18 @@ class Service(Document):
     phone = StringField()
     address = StringField()
     status = BooleanField()
+    description = StringField()
+    measurement = ListField()
+  
 
-# class Customer(Document):
-#     name = StringField()
-#     gender = IntField()
-#     email = StringField()
-#     phone_number = StringField()
-#     job = StringField()
-#     company = StringField()
-#     contracted = BooleanField()
+class Customer(Document):
+    name = StringField()
+    gender = IntField()
+    email = StringField()
+    phone_number = StringField()
+    job = StringField()
+    company = StringField()
+    contracted = BooleanField()
 
 
 # Do thong tin sau khi design khuon
