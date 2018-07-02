@@ -1,4 +1,5 @@
 from mongoengine import *
+#class: form cho database
 
 #1. Design database
 class Service(Document):
