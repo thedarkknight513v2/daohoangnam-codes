@@ -1,0 +1,47 @@
+.height-120px {
+    height: 120px;
+}
+
+.bg-blue {
+    background-color: blue
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.height-400px {
+    height: 400px;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.width-15pc {
+    width: 15%;
+}
+
+.width-69pc {
+    width: 69%;
+}
+
+#box-model {
+    border: 5px solid yellow;
+    /* margin: 10px 20px 30px 40px; */
+    margin: 10px 30px;
+    padding: 5px;
+}
+
+.width-20px {
+    width: 20px;
+}
+
+
+.height-20px {
+    height: 20px;
+}
+
+.bg-organge {
+    background-color: orange;
+}

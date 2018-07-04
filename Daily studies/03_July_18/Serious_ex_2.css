@@ -1,0 +1,28 @@
+.h-80 {
+    height: 80%
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+.h-900px {
+    height: 900px;
+}
+
+.bg-gray {
+    background-color: gray;
+}
+
+.flex-box1 {
+    display: flex;
+    
+}

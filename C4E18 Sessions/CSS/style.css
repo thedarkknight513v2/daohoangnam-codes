@@ -1,0 +1,44 @@
+.text-success {
+    color: green;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.bg-blue {
+    background-color: dodgerblue;
+}
+
+.h-100px {
+    height: 100px;
+}
+
+.bg-lightgreen {
+    background-color: lightgreen
+}
+
+.d-inline-block {
+    display: inline-block
+}
+
+#box-model {
+    border: 5px solid green;  
+    /* margin: 10px 20px 30px 40px; */
+    margin: 10px 30px;
+    padding: 5px;
+}
+
+.w-50px {
+    width: 50%; 
+}
+
+.h-50px {
+    height: 50px;
+}
+
+/* dash-dot-solid */
