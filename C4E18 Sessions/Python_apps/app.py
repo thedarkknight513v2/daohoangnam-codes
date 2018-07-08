@@ -38,7 +38,6 @@ def search_detail(service_id):
 
 @app.route("/search/<gender>")
 def search2(gender):
-    # day thong tin service len day. lay thong tin tu database
     # all_service = Service.objects(gender = gender, yob__lte =1998,address__icontains="Hanoi") #lay ra document trong Service thoa man tieu chi
     all_service = Service.objects(gender = gender) #lay ra document trong Service thoa man tieu chi
     return render_template("search.html", all_service = all_service)
@@ -62,13 +61,11 @@ def admin():
 
 @app.route("/admin/delete/<service_id>")
 def delete(service_id):
-    # return render_template("delete.html")
     service_to_delete = Service.objects().with_id(service_id) 
     if service_to_delete is None:
         return "Service not found"
     else:
         service_to_delete.delete()
-        # return "deleted" + service_id
         return redirect(url_for("admin"))
 
 @app.route("/admin/new_service", methods = ["GET", "POST"])
@@ -93,7 +90,6 @@ def create():
             gender = new_service_gender
         )
         new_service.save()
-
         return redirect(url_for("admin"))
 
 @app.route("/admin/update/<service_id>", methods = ["GET", "POST"])
@@ -133,7 +129,6 @@ def sign_in():
             email = email,
             full_name = full_name
         )
-
         new_user.save()
         return redirect(url_for("sign_in"))
 
@@ -151,7 +146,6 @@ def log_in():
             session["loggedin"] = True
             session["user_name"] = user_name
             return redirect(url_for("search1"))
-            # return "Welcome"
         else:
             return "Incorrect"
 

@@ -29,17 +29,17 @@ service = Service.objects().with_id(id_to_find)
 #Delete
 # hera3.delete()
 
-# Check whether document exist
-# if service is not None:
-#     # hera3.delete()
-#     # print(service.name)
-#     #to update
-#     print(service.yob)
-#     service.update(set__yob = 2005)
-#     service.reload()
-#     print(service.yob)
-# else:
-#     print("Service not found")
+Check whether document exist
+if service is not None:
+    # hera3.delete()
+    # print(service.name)
+    #to update
+    print(service.yob)
+    service.update(set__yob = 2005)
+    service.reload()
+    print(service.yob)
+else:
+    print("Service not found")
 
 id_user = "5b374d500cc1752dccb66d60"
 # user = User.objects().get(full_name = "Nathan Drake").to_mongo()

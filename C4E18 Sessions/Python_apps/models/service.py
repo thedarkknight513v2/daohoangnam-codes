@@ -1,5 +1,4 @@
 from mongoengine import *
-#class: form cho database
 
 #1. Design database
 class Service(Document):
@@ -36,4 +35,3 @@ class Order(Document):
 
 
 
-# Do thong tin sau khi design khuon

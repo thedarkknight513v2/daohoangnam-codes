@@ -24,7 +24,6 @@ for i in range(50):
         address = fake.address(),
         status = choice([True, False]),
         description = choice(description_list_1) + ", "+ choice(description_list_2),
-        # measurment = str(randint(70,100))+", "+ str(randint(70,100)) +", "+str(randint(70,100))
         measurement = [randint(70,100), randint(70,100), randint(70,100)]
         )
     new_service.save()
