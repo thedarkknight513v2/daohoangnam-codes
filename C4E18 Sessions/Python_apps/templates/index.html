@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {% include "metadata.html" %}
 </head>
 <body>
-    <h1>Mùa đông không lạnh</h1>
+    <h3>
+       {% include "homepage/navigation.html" %} 
+       {% include "homepage/carousel.html" %}
+    </h3>
     <a = href = "{{ url_for("search1", gender = 1) }}">Chạm vào anh đi!</a>  
     <!-- url for chay function -->
     <a = href = "{{ url_for("search2", gender = 0) }}">Chạm vào em đi!</a>
